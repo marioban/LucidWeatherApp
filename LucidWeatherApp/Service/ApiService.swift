@@ -14,10 +14,10 @@ enum ApiError: Error {
 }
 
 protocol ApiServiceRepository {
-    func fetchWeatherData(
+    func fetchCityWeather(
         for city: String, units: String?,
         completion: @escaping (Result<WeatherResponse, Error>) -> Void)
-    func fetchForecastData(
+    func fetchCoordinatesWeather(
         longitude: String, latitude: String, units: String?,
         completion: @escaping (Result<WeatherResponse, Error>) -> Void)
     func buildCityURL(city: String, units: String?) -> URL?
@@ -47,7 +47,7 @@ class ApiService: ApiServiceRepository {
     }()
 
 
-    func fetchWeatherData(for city: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, any Error>) -> Void) {
+    func fetchCityWeather(for city: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, any Error>) -> Void) {
         
         guard let url = buildCityURL(city: city, units: units ?? "metric") else {
             completion(.failure(ApiError.invalidURL))
@@ -80,7 +80,7 @@ class ApiService: ApiServiceRepository {
         }.resume()
     }
 
-    func fetchForecastData(longitude: String, latitude: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, any Error>) -> Void) {
+    func fetchCoordinatesWeather(longitude: String, latitude: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, any Error>) -> Void) {
         guard let url = buildCoordinateURL(latitude: latitude, longitude: longitude, units: units) else {
             completion(.failure(ApiError.invalidURL))
             return

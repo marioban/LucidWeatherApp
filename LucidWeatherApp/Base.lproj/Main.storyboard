@@ -78,6 +78,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Forecast Search" id="aED-qu-mbg"/>
                     <connections>
+                        <outlet property="searchBar" destination="Zix-vF-Se0" id="5fA-Ye-4ep"/>
                         <segue destination="tNj-Z1-NxM" kind="show" identifier="showForecastDetails" id="n5c-1f-zIJ"/>
                     </connections>
                 </viewController>
@@ -105,6 +106,9 @@
                                             <segment title="°F"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" systemColor="systemGray2Color"/>
+                                        <connections>
+                                            <action selector="switchUnits:" destination="tNj-Z1-NxM" eventType="valueChanged" id="h7f-HX-Ic0"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Los Angeles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYk-AS-aRd">
                                         <rect key="frame" x="0.0" y="59.000000000000007" width="361" height="115.66666666666669"/>

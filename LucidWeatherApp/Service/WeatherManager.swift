@@ -59,7 +59,7 @@ extension WeatherManager: CLLocationManagerDelegate {
         let latStr = String(currentLocation.coordinate.latitude)
         let lonStr = String(currentLocation.coordinate.longitude)
         
-        apiService.fetchForecastData(longitude: lonStr, latitude: latStr, units: "metric") { [weak self] result in
+        apiService.fetchCoordinatesWeather(longitude: lonStr, latitude: latStr, units: "metric") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):

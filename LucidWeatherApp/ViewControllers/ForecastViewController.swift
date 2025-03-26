@@ -10,6 +10,7 @@ import CoreLocation
 
 class ForecastViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     let cities = ["New York", "London", "Paris", "Rome"]
     var weatherManager: WeatherManager!
     var selectedWeather: WeatherResponse?
@@ -25,6 +26,7 @@ class ForecastViewController: UIViewController {
         
         weatherManager = WeatherManager()
         weatherManager.delegate = self
+        searchBar.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,12 +64,11 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
 extension ForecastViewController {
 
     func fetchWeatherForCity(_ city: String) {
-        ApiService.shared.fetchWeatherData(for: city, units: "metric") { result in
+        ApiService.shared.fetchCityWeather(for: city) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):
                     print("Weather for \(city): \(weatherResponse)")
-                    
                     self.selectedWeather = weatherResponse
                     self.performSegue(withIdentifier: "showForecastDetails", sender: nil)
                                     
@@ -79,9 +80,20 @@ extension ForecastViewController {
     }
 }
 
+extension ForecastViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        fetchWeatherForCity(searchText)
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+    }
+}
+
 extension ForecastViewController: WeatherManagerDelegate {
     func didUpdateWeather(_ weather: WeatherResponse) {
         print("Weather updated: \(weather)")
+        self.selectedWeather = weather
+        self.performSegue(withIdentifier: "showForecastDetails", sender: nil)
     }
     
     func didFailWithError(_ error: Error) {
