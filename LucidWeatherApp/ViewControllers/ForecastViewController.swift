@@ -12,6 +12,7 @@ class ForecastViewController: UIViewController {
     
     let cities = ["New York", "London", "Paris", "Rome"]
     var weatherManager: WeatherManager!
+    var selectedWeather: WeatherResponse?
     
     @IBAction func getMyLocation(_ sender: UIButton) {
         weatherManager.requestLocation()
@@ -24,6 +25,14 @@ class ForecastViewController: UIViewController {
         
         weatherManager = WeatherManager()
         weatherManager.delegate = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showForecastDetails" {
+            if let detailVC = segue.destination as? ForecastDetailsViewController {
+                detailVC.weatherResponse = selectedWeather
+            }
+        }
     }
 }
 
@@ -51,12 +60,17 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ForecastViewController {
+
     func fetchWeatherForCity(_ city: String) {
         ApiService.shared.fetchWeatherData(for: city, units: "metric") { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):
                     print("Weather for \(city): \(weatherResponse)")
+                    
+                    self.selectedWeather = weatherResponse
+                    self.performSegue(withIdentifier: "showForecastDetails", sender: nil)
+                                    
                 case .failure(let error):
                     print("Error fetching weather for \(city): \(error.localizedDescription)")
                 }

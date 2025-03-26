@@ -29,7 +29,6 @@ class WeatherManager: NSObject {
     }
     
     func requestLocation() {
-        print("Requesting location...")
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         hasUpdatedLocation = false
