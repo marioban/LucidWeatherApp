@@ -1,3 +1,4 @@
+
 # LucidWeatherApp
 
 LucidWeatherApp is an iOS application built with UIKit, Storyboards, Core Data, and URLSession. The app fetches current weather data from the OpenWeather API and displays it in a user-friendly way. It follows the MVC architecture and uses delegation to separate concerns. Additionally, it features a History tab that saves previous forecasts to Core Data, allowing users to view and delete saved searches.
@@ -21,13 +22,37 @@ LucidWeatherApp is an iOS application built with UIKit, Storyboards, Core Data, 
 
 ---
 
+## Screenshots
+
+Here are some example screenshots of LucidWeatherApp in action:
+
+### Metric vs. Imperial
+<img src="Screenshots/MetricScreenshot.png" width="300"> <img src="Screenshots/ImperialScreenshot.png" width="300">
+
+### Successful Save Alert
+<img src="Screenshots/SaveAlert.png" width="300">
+
+### City List and Search
+<img src="Screenshots/CityListSearch.png" width="300">
+
+### History Tab
+<img src="Screenshots/HistoryTab.png" width="300">
+
+### Deleting a Forecast
+<img src="Screenshots/SwipeToDelete.png" width="300">
+
+### Location Permission Prompt
+<img src="Screenshots/LocationPrompt.png" width="300">
+
+---
+
 ## Technologies & Design Patterns
 
-- **Languages & Frameworks:** Swift, UIKit, Core Data, URLSession, Core Location
-- **Design Patterns:** 
-  - **MVC (Model-View-Controller):** Separates the app’s data (Models), UI (Views), and business logic (Controllers).
-  - **Delegation:** Used extensively for handling API responses, location updates, and UITableView events.
-  - **Singleton:** Core Data stack and ApiService are implemented as singletons for centralized data management.
+- **Languages & Frameworks:** Swift, UIKit, Core Data, URLSession, Core Location  
+- **Design Patterns:**  
+  - **MVC (Model-View-Controller):** Separates the app’s data (Models), UI (Views), and business logic (Controllers).  
+  - **Delegation:** Used extensively for handling API responses, location updates, and UITableView events.  
+  - **Singleton:** Core Data stack and ApiService are implemented as singletons for centralized data management.  
 - **Storyboards & Segues:** The app uses Storyboards for UI design and segues to navigate between screens.
 
 ---
@@ -36,8 +61,8 @@ LucidWeatherApp is an iOS application built with UIKit, Storyboards, Core Data, 
 
 ### Requirements
 
-- Xcode 13 or later
-- iOS 14 or later
+- Xcode 13 or later  
+- iOS 14 or later  
 - An OpenWeather API key (register for a free account at [OpenWeather](https://openweathermap.org))
 
 ### Installation
@@ -56,14 +81,12 @@ LucidWeatherApp is an iOS application built with UIKit, Storyboards, Core Data, 
    ```
 
 3. **Add your API Key:**
-
    - Create a plist file named `api-key.plist` (if not already included).
    - Add a key `API_KEY` with your OpenWeather API key as its value.
    - Ensure that the plist is included in your project target.
 
 4. **Build and Run:**
-
-   Select your simulator or device and press `Cmd + R` to build and run the app.
+   - Select your simulator or device and press `Cmd + R` to build and run the app.
 
 ---
 
@@ -112,3 +135,4 @@ The app includes error handling that shows alerts in the event of network errors
 ## License
 
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+```
