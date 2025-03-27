@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -123,8 +122,8 @@
                                         <rect key="frame" x="0.0" y="198.66666666666669" width="361" height="75"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXt-68-v6d">
-                                                <rect key="frame" x="0.0" y="15.333333333333318" width="361" height="44.333333333333343"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                                <rect key="frame" x="0.0" y="3.3333333333333144" width="361" height="68.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="57"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -270,33 +269,85 @@
             </objects>
             <point key="canvasLocation" x="438.93129770992363" y="743.66197183098598"/>
         </scene>
-        <!--History-->
-        <scene sceneID="9o9-gL-o6P">
+        <!--History View Controller-->
+        <scene sceneID="u9x-Qn-axi">
             <objects>
-                <viewController id="0qB-nM-T4I" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dh7-oJ-Sqq">
+                <viewController id="wND-ZE-RMe" customClass="HistoryViewController" customModule="LucidWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="chx-cb-lK0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rld-4e-CXG">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-eL-jgs">
+                                <rect key="frame" x="16" y="59" width="361" height="710"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0ZH-yD-odg">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="ftF-pa-Ddw"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="°C"/>
+                                            <segment title="°F"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="unitsChanged:" destination="V0j-AI-983" eventType="valueChanged" id="EdH-oh-mK7"/>
+                                            <action selector="unitsSwitch:" destination="wND-ZE-RMe" eventType="valueChanged" id="FAR-2y-X7a"/>
+                                            <action selector="unitsSwitch:" destination="V0j-AI-983" eventType="valueChanged" id="daN-66-Twn"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-BF-AZU">
+                                        <rect key="frame" x="0.0" y="35" width="361" height="675"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryTableViewCell" id="YHy-jh-8lc" customClass="HistoryTableViewCell" customModule="LucidWeatherApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YHy-jh-8lc" id="hfN-bu-Txk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj5-Mr-xg2">
+                                                            <rect key="frame" x="40" y="22" width="281" height="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="bj5-Mr-xg2" firstAttribute="centerY" secondItem="hfN-bu-Txk" secondAttribute="centerY" id="SFX-Hn-WlM"/>
+                                                        <constraint firstItem="bj5-Mr-xg2" firstAttribute="leading" secondItem="hfN-bu-Txk" secondAttribute="leadingMargin" constant="20" id="X2C-zC-UVl"/>
+                                                        <constraint firstItem="bj5-Mr-xg2" firstAttribute="centerX" secondItem="hfN-bu-Txk" secondAttribute="centerX" id="d3l-kx-l3w"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="Bgq-uL-r4L"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="FHZ-Kh-8Oh"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Fds-De-RcT"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Z0q-E0-MIM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rld-4e-CXG" firstAttribute="top" secondItem="Fds-De-RcT" secondAttribute="top" id="Lhj-CP-gMl"/>
-                            <constraint firstItem="rld-4e-CXG" firstAttribute="leading" secondItem="Fds-De-RcT" secondAttribute="leading" id="PaW-4Y-o8M"/>
-                            <constraint firstItem="Fds-De-RcT" firstAttribute="bottom" secondItem="rld-4e-CXG" secondAttribute="bottom" id="Xfa-yB-Yat"/>
-                            <constraint firstItem="Fds-De-RcT" firstAttribute="trailing" secondItem="rld-4e-CXG" secondAttribute="trailing" id="iI3-Xd-Aua"/>
+                            <constraint firstItem="BeT-eL-jgs" firstAttribute="bottom" secondItem="Z0q-E0-MIM" secondAttribute="bottom" id="aa9-35-ug1"/>
+                            <constraint firstItem="BeT-eL-jgs" firstAttribute="top" secondItem="Z0q-E0-MIM" secondAttribute="top" id="goe-yW-B5u"/>
+                            <constraint firstItem="BeT-eL-jgs" firstAttribute="leading" secondItem="Z0q-E0-MIM" secondAttribute="leading" constant="16" id="ju1-Oy-cpV"/>
+                            <constraint firstItem="Z0q-E0-MIM" firstAttribute="trailing" secondItem="BeT-eL-jgs" secondAttribute="trailing" constant="16" id="qPg-3e-Qag"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="History" image="clock.fill" catalog="system" id="lix-5N-ntK"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="Hil-i8-SNW"/>
+                    <connections>
+                        <outlet property="segmentedUnits" destination="0ZH-yD-odg" id="7Uf-aS-RLo"/>
+                        <outlet property="tableView" destination="dgh-BF-AZU" id="fLf-Q0-5zP"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wYm-XM-bWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KmM-xG-LqC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="V0j-AI-983" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1660.3053435114502" y="743.66197183098598"/>
+            <point key="canvasLocation" x="1388.5496183206105" y="743.66197183098598"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NPb-vG-wIN">
@@ -309,20 +360,18 @@
                     </tabBar>
                     <connections>
                         <segue destination="4rE-va-4jB" kind="relationship" relationship="viewControllers" id="cJF-3C-ang"/>
-                        <segue destination="0qB-nM-T4I" kind="relationship" relationship="viewControllers" id="m8E-9C-ZvU"/>
+                        <segue destination="wND-ZE-RMe" kind="relationship" relationship="viewControllers" id="ELG-2u-Ulm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPk-yM-YJO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="119.84732824427481" y="3.5211267605633805"/>
         </scene>
-        <!--Forecast-->
+        <!--Navigation Controller-->
         <scene sceneID="rQw-HF-3dt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4rE-va-4jB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Forecast" image="magnifyingglass.circle.fill" catalog="system" id="cST-JQ-DvL">
-                        <imageReference key="selectedImage" image="magnifyingglass.circle" catalog="system" variableValue="0.40000000000000008"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="cST-JQ-DvL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dsp-to-dhb">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -339,9 +388,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock.fill" catalog="system" width="128" height="123"/>
-        <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
-        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

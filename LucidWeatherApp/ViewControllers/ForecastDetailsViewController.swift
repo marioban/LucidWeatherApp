@@ -24,6 +24,24 @@ class ForecastDetailsViewController: UIViewController {
     var weatherResponse: WeatherResponse?
     
     @IBAction func saveToDatabase(_ sender: UIButton) {
+        guard let weather = weatherResponse  else { return  }
+        
+        let context = CoreDataService.shared.context
+        let newForecast = Forecast(context: context)
+        newForecast.cityName = weather.name
+        newForecast.temperature = weather.main.temp
+        newForecast.date = Date()
+        
+        do {
+            try context.save()
+            print("forecast saved to database")
+            
+            let alert = UIAlertController(title: "Saved!", message: "Forecast saved to database.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        } catch {
+            print("Error saving forecast: \(error)")
+        }
     }
     
     override func viewDidLoad() {
@@ -43,7 +61,7 @@ class ForecastDetailsViewController: UIViewController {
         
         if segemntedUnits.selectedSegmentIndex == 0 {
             cityName.text = weatherResponse.name
-            temperature.text = String(format: "Temperature: %.1f°C", weatherResponse.main.temp)
+            temperature.text = String(format: "%.1f°C", weatherResponse.main.temp)
             feelsLike.text = String(format: "Feels like: %.1f°C", weatherResponse.main.feelsLike)
             tempMin.text = String(format: "Min temp: %.1f°C", weatherResponse.main.tempMin)
             tempMax.text = String(format: "Max temp: %.1f°C", weatherResponse.main.tempMax)
@@ -62,7 +80,7 @@ class ForecastDetailsViewController: UIViewController {
             let pressureInHg = Double(weatherResponse.main.pressure) * 0.02953
             
             cityName.text = weatherResponse.name
-            temperature.text = String(format: "Temperature: %.1f°F", tempF)
+            temperature.text = String(format: "%.1f°F", tempF)
             feelsLike.text = String(format: "Feels like: %.1f°F", feelsLikeF)
             tempMin.text = String(format: "Min temp: %.1f°F", tempMinF)
             tempMax.text = String(format: "Max temp: %.1f°F", tempMaxF)
