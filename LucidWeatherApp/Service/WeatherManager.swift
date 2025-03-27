@@ -42,7 +42,8 @@ extension WeatherManager: CLLocationManagerDelegate {
             case .denied, .restricted:
                 delegate?.didFailWithError(ApiError.invalidURL)
             case .notDetermined:
-                manager.requestWhenInUseAuthorization()
+                //manager.requestWhenInUseAuthorization()
+                break
             case .authorizedWhenInUse, .authorizedAlways:
                 break
             @unknown default:
