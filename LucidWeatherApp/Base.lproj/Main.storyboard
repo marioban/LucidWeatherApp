@@ -17,62 +17,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Y5F-6k-Ic7">
-                                <rect key="frame" x="0.0" y="164" width="393" height="562"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="562" id="UPT-vD-JAb"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlainTableViewCell" id="3cQ-8d-AZU" customClass="PlainTableViewCell" customModule="LucidWeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3cQ-8d-AZU" id="548-0J-YqV">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDW-kB-f0n">
-                                                    <rect key="frame" x="40" y="22" width="313" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="qDW-kB-f0n" firstAttribute="centerX" secondItem="548-0J-YqV" secondAttribute="centerX" id="3Mm-Zc-8zI"/>
-                                                <constraint firstItem="qDW-kB-f0n" firstAttribute="centerY" secondItem="548-0J-YqV" secondAttribute="centerY" id="qZa-d1-noW"/>
-                                                <constraint firstItem="qDW-kB-f0n" firstAttribute="leading" secondItem="548-0J-YqV" secondAttribute="leadingMargin" constant="20" id="yHH-Le-szs"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="zR9-a4-Sdi"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ki2-88-RT0"/>
-                                </connections>
-                            </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zix-vF-Se0">
-                                <rect key="frame" x="0.0" y="103" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ex-m9-Zhj">
-                                <rect key="frame" x="265" y="734" width="112" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="My location"/>
-                                <connections>
-                                    <action selector="getMyLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jec-p0-uF3"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qDW-gF-qfH">
+                                <rect key="frame" x="16" y="103" width="361" height="643.66666666666663"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Zix-vF-Se0">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="oek-VU-6xN"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Y5F-6k-Ic7">
+                                        <rect key="frame" x="0.0" y="44" width="361" height="562"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="562" id="UPT-vD-JAb"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlainTableViewCell" id="3cQ-8d-AZU" customClass="PlainTableViewCell" customModule="LucidWeatherApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3cQ-8d-AZU" id="548-0J-YqV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDW-kB-f0n">
+                                                            <rect key="frame" x="40" y="22" width="281" height="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="qDW-kB-f0n" firstAttribute="centerX" secondItem="548-0J-YqV" secondAttribute="centerX" id="3Mm-Zc-8zI"/>
+                                                        <constraint firstItem="qDW-kB-f0n" firstAttribute="centerY" secondItem="548-0J-YqV" secondAttribute="centerY" id="qZa-d1-noW"/>
+                                                        <constraint firstItem="qDW-kB-f0n" firstAttribute="leading" secondItem="548-0J-YqV" secondAttribute="leadingMargin" constant="20" id="yHH-Le-szs"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="zR9-a4-Sdi"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ki2-88-RT0"/>
+                                        </connections>
+                                    </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJP-1S-bzH">
+                                        <rect key="frame" x="0.0" y="610" width="361" height="33.666666666666629"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZS-41-hmf">
+                                                <rect key="frame" x="0.0" y="0.0" width="249" height="33.666666666666664"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33.5" id="MGV-jr-BOz"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ex-m9-Zhj">
+                                                <rect key="frame" x="249" y="0.0" width="112" height="33.666666666666664"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="My location"/>
+                                                <connections>
+                                                    <action selector="getMyLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jec-p0-uF3"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Y5F-6k-Ic7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Awf-xE-w5r"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Ex-m9-Zhj" secondAttribute="trailing" constant="16" id="PNe-46-Wqa"/>
-                            <constraint firstItem="9Ex-m9-Zhj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="X8W-x3-iOY"/>
-                            <constraint firstItem="9Ex-m9-Zhj" firstAttribute="top" secondItem="Y5F-6k-Ic7" secondAttribute="bottom" constant="8" id="k0b-fK-h1w"/>
-                            <constraint firstItem="Y5F-6k-Ic7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="kNT-he-0d7"/>
-                            <constraint firstItem="Y5F-6k-Ic7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mpy-fo-2cR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qDW-gF-qfH" secondAttribute="trailing" constant="16" id="UH6-ZB-Osn"/>
+                            <constraint firstItem="qDW-gF-qfH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="itm-3f-mbq"/>
+                            <constraint firstItem="qDW-gF-qfH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xzC-fX-gul"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast Search" id="aED-qu-mbg"/>
@@ -277,7 +292,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-eL-jgs">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-eL-jgs">
                                 <rect key="frame" x="16" y="59" width="361" height="710"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0ZH-yD-odg">
@@ -297,7 +312,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-BF-AZU">
-                                        <rect key="frame" x="0.0" y="35" width="361" height="675"/>
+                                        <rect key="frame" x="0.0" y="47" width="361" height="663"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryTableViewCell" id="YHy-jh-8lc" customClass="HistoryTableViewCell" customModule="LucidWeatherApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
