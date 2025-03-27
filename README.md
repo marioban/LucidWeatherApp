@@ -135,4 +135,3 @@ The app includes error handling that shows alerts in the event of network errors
 ## License
 
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
-```
