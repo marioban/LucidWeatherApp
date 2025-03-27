@@ -10,7 +10,7 @@ import CoreData
 
 class ForecastDetailsViewController: UIViewController {
     
-    @IBOutlet weak var segemntedUnits: UISegmentedControl!
+    @IBOutlet weak var segmentedUnits: UISegmentedControl!
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var temperature: UILabel!
     @IBOutlet weak var feelsLike: UILabel!
@@ -35,12 +35,14 @@ class ForecastDetailsViewController: UIViewController {
         do {
             try context.save()
             print("forecast saved to database")
-            
             let alert = UIAlertController(title: "Saved!", message: "Forecast saved to database.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         } catch {
-            print("Error saving forecast: \(error)")
+            print("Error saving forecast: \(error.localizedDescription)")
+            let alert = UIAlertController(title: "Error", message: "Failed to save forecast: \(error.localizedDescription)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
         }
     }
     
@@ -59,7 +61,7 @@ class ForecastDetailsViewController: UIViewController {
     func updateUI() {
         guard let weatherResponse = weatherResponse else { return }
         
-        if segemntedUnits.selectedSegmentIndex == 0 {
+        if segmentedUnits.selectedSegmentIndex == 0 {
             cityName.text = weatherResponse.name
             temperature.text = String(format: "%.1f°C", weatherResponse.main.temp)
             feelsLike.text = String(format: "Feels like: %.1f°C", weatherResponse.main.feelsLike)

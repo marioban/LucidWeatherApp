@@ -14,12 +14,8 @@ enum ApiError: Error {
 }
 
 protocol ApiServiceRepository {
-    func fetchCityWeather(
-        for city: String, units: String?,
-        completion: @escaping (Result<WeatherResponse, Error>) -> Void)
-    func fetchCoordinatesWeather(
-        longitude: String, latitude: String, units: String?,
-        completion: @escaping (Result<WeatherResponse, Error>) -> Void)
+    func fetchCityWeather(for city: String, units: String?, completion: @escaping (Result<WeatherResponse, Error>) -> Void)
+    func fetchCoordinatesWeather(longitude: String, latitude: String, units: String?, completion: @escaping (Result<WeatherResponse, Error>) -> Void)
     func buildCityURL(city: String, units: String?) -> URL?
     func buildCoordinateURL(latitude: String, longitude: String, units: String?) -> URL?
 }
@@ -45,10 +41,8 @@ class ApiService: ApiServiceRepository {
         
         return key
     }()
-
-
-    func fetchCityWeather(for city: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, any Error>) -> Void) {
-        
+    
+    func fetchCityWeather(for city: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
         guard let url = buildCityURL(city: city, units: units ?? "metric") else {
             completion(.failure(ApiError.invalidURL))
             return
@@ -60,13 +54,12 @@ class ApiService: ApiServiceRepository {
                 return
             }
             
-            
             if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
                 completion(.failure(ApiError.invalidStatusCode(httpResponse.statusCode)))
                 return
             }
             
-            guard let data else {
+            guard let data = data else {
                 completion(.failure(ApiError.emptyData))
                 return
             }
@@ -79,17 +72,16 @@ class ApiService: ApiServiceRepository {
             }
         }.resume()
     }
-
-    func fetchCoordinatesWeather(longitude: String, latitude: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, any Error>) -> Void) {
+    
+    func fetchCoordinatesWeather(longitude: String, latitude: String, units: String? = "metric", completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
         guard let url = buildCoordinateURL(latitude: latitude, longitude: longitude, units: units) else {
             completion(.failure(ApiError.invalidURL))
             return
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            
             if let error = error {
-                completion(.failure(ApiError.invalidURL))
+                completion(.failure(error))
                 return
             }
             
@@ -99,7 +91,7 @@ class ApiService: ApiServiceRepository {
             }
             
             guard let data = data else {
-                completion(.failure(error ?? ApiError.invalidURL))
+                completion(.failure(ApiError.emptyData))
                 return
             }
             do {
@@ -110,26 +102,24 @@ class ApiService: ApiServiceRepository {
             }
         }.resume()
     }
-
+    
     internal func buildCityURL(city: String, units: String?) -> URL? {
-        var components = URLComponents(
-            string: "https://api.openweathermap.org/data/2.5/weather")
+        var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/weather")
         components?.queryItems = [
             URLQueryItem(name: "q", value: city),
             URLQueryItem(name: "units", value: units),
-            URLQueryItem(name: "appid", value: apiKey),
+            URLQueryItem(name: "appid", value: apiKey)
         ]
         return components?.url
     }
-
+    
     internal func buildCoordinateURL(latitude: String, longitude: String, units: String?) -> URL? {
-        var components = URLComponents(
-            string: "https://api.openweathermap.org/data/2.5/weather")
+        var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/weather")
         components?.queryItems = [
             URLQueryItem(name: "lat", value: latitude),
             URLQueryItem(name: "lon", value: longitude),
             URLQueryItem(name: "units", value: units),
-            URLQueryItem(name: "appid", value: apiKey),
+            URLQueryItem(name: "appid", value: apiKey)
         ]
         return components?.url
     }

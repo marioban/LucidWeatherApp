@@ -257,7 +257,7 @@
                         <outlet property="feelsLike" destination="jcV-lj-mik" id="WPw-9U-zFH"/>
                         <outlet property="humidity" destination="Owi-49-ekn" id="Tqk-KN-ftI"/>
                         <outlet property="pressure" destination="3SD-50-mRr" id="F5u-Lz-O8s"/>
-                        <outlet property="segemntedUnits" destination="iJr-zT-muc" id="t5n-PL-4Y3"/>
+                        <outlet property="segmentedUnits" destination="iJr-zT-muc" id="t5n-PL-4Y3"/>
                         <outlet property="tempMax" destination="j6E-FS-MoI" id="gcZ-jx-13M"/>
                         <outlet property="tempMin" destination="wwy-3I-jAg" id="e7X-gT-Mrt"/>
                         <outlet property="temperature" destination="UXt-68-v6d" id="N2h-pB-eZa"/>

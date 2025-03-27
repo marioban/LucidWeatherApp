@@ -43,6 +43,7 @@ class HistoryViewController: UIViewController {
             try fetchedResultsController.performFetch()
         } catch {
             print("Failed to fetch forecasts: \(error.localizedDescription)")
+            showAlert(withTitle: "Error", message: "Failed to fetch saved forecasts: \(error.localizedDescription)")
         }
     }
     
@@ -55,6 +56,12 @@ class HistoryViewController: UIViewController {
 extension HistoryViewController {
     func updateUI() {
         tableView.reloadData()
+    }
+    
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -101,6 +108,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 try context.save()
             } catch  {
                 print("Failed deleting record: \(error.localizedDescription)")
+                showAlert(withTitle: "Error", message: "Failed to delete record: \(error.localizedDescription)")
             }
         }
     }

@@ -56,10 +56,10 @@ extension WeatherManager: CLLocationManagerDelegate {
         hasUpdatedLocation = true
         locationManager.stopUpdatingLocation()
         
-        let latStr = String(currentLocation.coordinate.latitude)
-        let lonStr = String(currentLocation.coordinate.longitude)
+        let lat = String(currentLocation.coordinate.latitude)
+        let lon = String(currentLocation.coordinate.longitude)
         
-        apiService.fetchCoordinatesWeather(longitude: lonStr, latitude: latStr, units: "metric") { [weak self] result in
+        apiService.fetchCoordinatesWeather(longitude: lon, latitude: lat, units: "metric") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):

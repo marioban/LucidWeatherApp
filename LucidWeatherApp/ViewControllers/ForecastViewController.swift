@@ -36,6 +36,12 @@ class ForecastViewController: UIViewController {
             }
         }
     }
+    
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 
@@ -74,6 +80,7 @@ extension ForecastViewController {
                                     
                 case .failure(let error):
                     print("Error fetching weather for \(city): \(error.localizedDescription)")
+                    self.showAlert(withTitle: "Error", message: error.localizedDescription)
                 }
             }
         }
@@ -98,5 +105,6 @@ extension ForecastViewController: WeatherManagerDelegate {
     
     func didFailWithError(_ error: Error) {
         print("Failed to update weather: \(error.localizedDescription)")
+        self.showAlert(withTitle: "Error", message: error.localizedDescription)
     }
 }
